@@ -109,10 +109,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "bronze",
-							"folder": {
-								"value": "@{pipeline().parameters.table}.cdc",
-								"type": "Expression"
-							},
+							"folder": "cdc",
 							"file": "cdc.json"
 						}
 					},
@@ -139,6 +136,8 @@
 			{
 				"name": "IfIncrementalData",
 				"type": "IfCondition",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "AzureSQLToLake",
